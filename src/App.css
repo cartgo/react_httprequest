@@ -46,7 +46,7 @@ tr {
 }
 table { 
   
-  letter-spacing:3px;/* 文字缩进 */
+  letter-spacing:3px; 
 
   width: 1000px; 
   /* min-height: 25px;  */
@@ -59,8 +59,7 @@ table {
   }   
   table,table tr th, table tr td { 
     /* border:1px solid #e1e6e9;  */
-    border-bottom:1px solid #484a4b;/* 表格横线 */
-
+    border-bottom:1px solid #484a4b; 
     padding:20px;
    }
    th{
