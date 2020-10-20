@@ -18,6 +18,9 @@ class App extends Component {
  };
 
  delete(postsIndex){
+  axios.delete( 'https://jsonplaceholder.typicode.com/posts/'+this.state.posts[postsIndex].id.toString() )
+  .then(response =>{console.log(response)}
+  );
 
   const posts = [...this.state.posts];
   posts.splice(postsIndex, 1);
@@ -62,8 +65,13 @@ axios.post( 'https://jsonplaceholder.typicode.com/posts' , {
  
 
 
-  keydown = (event,index) =>{
+  keydown = (event,index,name) =>{
+    const posts = [...this.state.posts];
+    const post = posts[index];
     if(event.key === 'Enter'){
+  axios.put('https://jsonplaceholder.typicode.com/posts/'+this.state.posts[index].id,post).then(resonpose =>{
+    console.log(resonpose)
+})
       this.setState({
         pointer:null,linepicker:null
     });
@@ -86,12 +94,12 @@ handleChange(event,index,name){
  const posts = [...this.state.posts];
  const post = posts[index];
  if(name === 'userId' ){
-  console.log('userId')
   if(event.target.value >0){
   post.userId = Math.round(event.target.value)}
  }else if(name ==='title'&&(event.target.value.replace(/(^\s*)|(\s*$)/g, '')).length!==0){
    console.log('title')
- post.title = event.target.value;}
+ post.title = event.target.value;
+}
  else if(name ==='body'&&(event.target.value.replace(/(^\s*)|(\s*$)/g, '')).length!==0){
    console.log('body')
  post.body = event.target.value;
@@ -136,7 +144,7 @@ postinfo =
                   <td><label>userId:
                       <input type="number" name="userId" 
                       onChange={(event,name)=>this.handleChange(event,index,name = 'userId')}
-                      onKeyDown = {(event) => {this.keydown(event,index )}}/>
+                      onKeyDown = {(event,name ) => {this.keydown(event,index,name = 'userId' )}}/>
                   </label></td>
                   <td className = 'titleCo' onClick = {()=>this.click(index,'title')}>{post.title}&nbsp;</td>
                   <td className = 'bodyCo'  onClick = {()=>this.click(index,'body')}>{post.body}&nbsp;</td>
@@ -149,7 +157,7 @@ postinfo =
                   <td><label>title:
                       <input type="text" name="title" 
                       onChange={(event,name)=>this.handleChange(event,index,name = 'title')}
-                      onKeyDown = {(event) => {this.keydown(event,index )}}/>
+                      onKeyDown = {(event,name ) => {this.keydown(event,index,name = 'title' )}}/>
                   </label></td>
                   <td className = 'bodyCo'  onClick = {()=>this.click(index,'body')}>{post.body}&nbsp;</td>
                   <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>Delete</button></td>
@@ -163,7 +171,7 @@ postinfo =
                         <input type="text" name="body" 
                         // value={this.state.posts[index].userId} 
                         onChange={(event,name)=>this.handleChange(event,index,name = 'body')}
-                        onKeyDown = {(event) => {this.keydown(event,index )}}/>
+                        onKeyDown = {(event,name ) => {this.keydown(event,index ,name = 'body')}}/>
                   </label></td>
                   <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>Delete</button></td>
                   </tr>
