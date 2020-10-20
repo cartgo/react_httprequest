@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 // import MyTable from './Table/MyTable';
 import axios from 'axios'; 
-import {Switch, hashHistory} from 'react-router';
-import Newitemform from './Newitemform/Newitemform'
+// import {Switch, hashHistory} from 'react-router';
+// import Newitemform from './Newitemform/Newitemform'
 
 class App extends Component {
 
@@ -34,7 +34,7 @@ axios.post( 'https://jsonplaceholder.typicode.com/posts' , {
         body : 'new body'
       })
       .then( res => {
-        console .log(res);
+        // console .log(res);
         let newPost = res.data;
         newPost.id =this.state.id;
         let newData = [...this.state.posts, newPost];
@@ -85,14 +85,14 @@ handleChange(event,index,name){
  console.log(event.target.value)
  const posts = [...this.state.posts];
  const post = posts[index];
- if(name == 'userId' ){
+ if(name === 'userId' ){
   console.log('userId')
   if(event.target.value >0){
   post.userId = Math.round(event.target.value)}
- }else if(name =='title'&&(event.target.value.replace(/(^\s*)|(\s*$)/g, '')).length!=0){
+ }else if(name ==='title'&&(event.target.value.replace(/(^\s*)|(\s*$)/g, '')).length!==0){
    console.log('title')
  post.title = event.target.value;}
- else if(name =='body'&&(event.target.value.replace(/(^\s*)|(\s*$)/g, '')).length!=0){
+ else if(name ==='body'&&(event.target.value.replace(/(^\s*)|(\s*$)/g, '')).length!==0){
    console.log('body')
  post.body = event.target.value;
  }
@@ -120,8 +120,8 @@ postinfo =
     </thead>
     <tbody>
   { this.state.posts.map((post,index) => {
-    if(this.state.linepicker!=index){
-      return       <tr> 
+    if(this.state.linepicker!==index){
+      return       <tr key={post.id}> 
     <td className = 'idCo'>{post.id}</td>
     <td className = 'userIdCo' onClick = {()=>this.click(index,'userId')}>{post.userId}&nbsp;</td>
     <td className = 'titleCo' onClick = {()=>this.click(index,'title')}>{post.title}&nbsp;</td>
@@ -131,7 +131,7 @@ postinfo =
     else{
     switch(this.state.pointer){
       case 'userId':
-          return <tr> 
+          return <tr key={post.id}> 
                   <td className = 'idCo'>{post.id}</td>
                   <td><label>userId:
                       <input type="number" name="userId" 
@@ -143,7 +143,7 @@ postinfo =
                   <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>Delete</button></td>
                   </tr>
        case 'title':
-        return <tr> 
+        return <tr key={post.id}>  
                   <td className = 'idCo'>{post.id}</td>
                   <td className = 'userIdCo' onClick = {()=>this.click(index,'userId')}>{post.userId}&nbsp;</td>
                   <td><label>title:
@@ -154,8 +154,8 @@ postinfo =
                   <td className = 'bodyCo'  onClick = {()=>this.click(index,'body')}>{post.body}&nbsp;</td>
                   <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>Delete</button></td>
                   </tr>
-         case 'body':
-            return <tr> 
+         default:
+            return <tr key={post.id}>  
                   <td className = 'idCo'>{post.id}</td>
                   <td className = 'userIdCo' onClick = {()=>this.click(index,'userId')}>{post.userId}&nbsp;</td>
                   <td className = 'titleCo' onClick = {()=>this.click(index,'title')}>{post.title}&nbsp;</td>
@@ -171,7 +171,7 @@ postinfo =
   }  
     )
     }
-  <br/>&nbsp; <br/><br/>
+  {/* <br/><br/> */}
   </tbody>
 
   </table>

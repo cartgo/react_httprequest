@@ -21,15 +21,15 @@ import axios from 'axios';
     handleSubmit = this.handleSubmit.bind(this);
     handleInputChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value });
-        if(this.state.userId.length>0 && this.state.userId.charAt(0)!='-'){
+        if(this.state.userId.length>0 && this.state.userId.charAt(0)!=='-'){
             this.setState({
                 idclasses:''
             })}
-            if((this.state.title.replace(/(^\s*)|(\s*$)/g, '')).length!=0){
+            if((this.state.title.replace(/(^\s*)|(\s*$)/g, '')).length!==0){
             this.setState({
                 titleclasses:''
             })}
-        if((this.state.body.replace(/(^\s*)|(\s*$)/g, '')).length!=0){
+        if((this.state.body.replace(/(^\s*)|(\s*$)/g, '')).length!==0){
             this.setState({
                 bodyclasses:''
             })}
@@ -39,7 +39,7 @@ import axios from 'axios';
         this.setState({
             ifredirect:2
         })
-        if(this.state.userId =='' || this.state.userId.charAt(0)=='-'){
+        if(this.state.userId ==='' || this.state.userId.charAt(0)==='-'){
             this.setState({
                 idclasses:styles.red
                 
@@ -48,7 +48,7 @@ import axios from 'axios';
                 ifredirect:1
             })
         }
-        if((this.state.title.replace(/(^\s*)|(\s*$)/g, '')).length==0 ){
+        if((this.state.title.replace(/(^\s*)|(\s*$)/g, '')).length===0 ){
             this.setState({
                 titleclasses:styles.red
             })
@@ -56,7 +56,7 @@ import axios from 'axios';
                 ifredirect:1
             })
         }
-       if((this.state.body.replace(/(^\s*)|(\s*$)/g, '')).length==0
+       if((this.state.body.replace(/(^\s*)|(\s*$)/g, '')).length===0
         ){
             this.setState({
                 bodyclasses:styles.red
@@ -81,8 +81,8 @@ import axios from 'axios';
               id: this.state.id +1
             });
             
-            if(this.state.ifredirect==2){
-                alert("new record added:"+  "    "+res.data.userId+  "    "+ res.data.title+" "+  "    "+res.data.body)
+            if(this.state.ifredirect===2){
+                alert("new record added:    "+res.data.userId+  "    "+ res.data.title+  "     "+res.data.body)
                 this.setState({ifredirect:3})
             }
           }
@@ -92,7 +92,7 @@ import axios from 'axios';
       }
     
       renderredirect(){
-        if(this.state.ifredirect==3){       
+        if(this.state.ifredirect===3){       
         return <Redirect to='/' />
       }
       }
