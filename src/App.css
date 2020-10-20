@@ -49,8 +49,7 @@ table {
   letter-spacing:3px; 
 
   width: 1000px; 
-  /* min-height: 25px;  */
-  /* line-height: 25px; */
+ 
    text-align: center;
     border-collapse: collapse;
     border:"5";
@@ -66,3 +65,16 @@ table {
     background-color:#f7f0f0;
 
    }
+   button{
+    letter-spacing:2px; 
+    margin: 5px 5px;
+    padding: 10px; 
+    border: 1px solid #dbcfc5; 
+    background-color: #fdfdfd;
+    cursor: pointer;
+    box-shadow: 0 2px 12px 0 rgba(12, 12, 12, 0.1) 
+}
+input{
+  box-shadow: 0 2px 12px 0 rgba(194, 8, 70, 0.1) 
+
+}

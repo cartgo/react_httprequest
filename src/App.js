@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import './App.css';
 // import MyTable from './Table/MyTable';
 import axios from 'axios'; 
+import {Switch, hashHistory} from 'react-router';
+import Newitemform from './Newitemform/Newitemform'
+
 class App extends Component {
 
   state = {
@@ -52,7 +55,8 @@ axios.post( 'https://jsonplaceholder.typicode.com/posts' , {
       this.setState({ posts:posts,
       id: posts[posts.length - 1].id+1 
      });
-   
+     console.log("now id ="+this.state.id)
+
     })  }
  
  
@@ -85,11 +89,12 @@ handleChange(event,index,name){
   console.log('userId')
   if(event.target.value >0){
   post.userId = Math.round(event.target.value)}
- }else if(name =='title'){console.log('title')
+ }else if(name =='title'&&(event.target.value.replace(/(^\s*)|(\s*$)/g, '')).length!=0){
+   console.log('title')
  post.title = event.target.value;}
- else{console.log('body')
+ else if(name =='body'&&(event.target.value.replace(/(^\s*)|(\s*$)/g, '')).length!=0){
+   console.log('body')
  post.body = event.target.value;
-
  }
  }
 
@@ -121,7 +126,7 @@ postinfo =
     <td className = 'userIdCo' onClick = {()=>this.click(index,'userId')}>{post.userId}&nbsp;</td>
     <td className = 'titleCo' onClick = {()=>this.click(index,'title')}>{post.title}&nbsp;</td>
     <td className = 'bodyCo'  onClick = {()=>this.click(index,'body')}>{post.body}&nbsp;</td>
-    <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>delete</button></td>
+    <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>Delete</button></td>
     </tr>}
     else{
     switch(this.state.pointer){
@@ -135,7 +140,7 @@ postinfo =
                   </label></td>
                   <td className = 'titleCo' onClick = {()=>this.click(index,'title')}>{post.title}&nbsp;</td>
                   <td className = 'bodyCo'  onClick = {()=>this.click(index,'body')}>{post.body}&nbsp;</td>
-                  <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>delete</button></td>
+                  <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>Delete</button></td>
                   </tr>
        case 'title':
         return <tr> 
@@ -147,7 +152,7 @@ postinfo =
                       onKeyDown = {(event) => {this.keydown(event,index )}}/>
                   </label></td>
                   <td className = 'bodyCo'  onClick = {()=>this.click(index,'body')}>{post.body}&nbsp;</td>
-                  <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>delete</button></td>
+                  <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>Delete</button></td>
                   </tr>
          case 'body':
             return <tr> 
@@ -160,7 +165,7 @@ postinfo =
                         onChange={(event,name)=>this.handleChange(event,index,name = 'body')}
                         onKeyDown = {(event) => {this.keydown(event,index )}}/>
                   </label></td>
-                  <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>delete</button></td>
+                  <td className = 'buttonCo'> <button onClick =  {()=>this.delete(index)}>Delete</button></td>
                   </tr>
     }}    
   }  
@@ -176,13 +181,13 @@ postinfo =
 
      return (
       <div className = 'App-header'>
- 
+
     
         {postinfo}
-      <button onClick = {()=>this.create()}>add item</button>
-              
-
-
+      {/* <button onClick = {()=>this.create()}>add item</button> */}
+      
+  
+    
 
 
       </div>

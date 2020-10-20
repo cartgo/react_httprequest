@@ -1,0 +1,42 @@
+.red {
+    border: 1px solid #df0f0f;
+    box-shadow: 0 4px 24px 0 rgba(194, 8, 70, 0.137);
+  }
+ 
+
+h3,label {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing:2px; 
+    color: #504141f6;
+
+} 
+ 
+input {
+    display: block;
+    color: #504141d3;
+    box-sizing: border-box;
+    outline: none;
+    font: inherit;
+    margin: auto;
+    box-shadow: 0 2px 12px 0 rgba(194, 8, 70, 0.1);
+    border: 1px solid #7e6e6bee; 
+
+    
+}
+ 
+input[type=submit]:hover,
+input[type=submit]:active {
+ 
+     cursor: pointer;
+    padding:5px;
+    font: inherit;
+    border: 1px solid #504141d3;
+    background-color: #eae6ecd3;
+    color:  #000000d3;
+ font-weight: 700;
+ letter-spacing:2px; 
+
+}  
