@@ -38,12 +38,12 @@ axios.post( 'https://jsonplaceholder.typicode.com/posts' , {
         let newPost = res.data;
         newPost.id =this.state.id;
         let newData = [...this.state.posts, newPost];
-        this .setState({
+        this.setState({
           posts : newData,
           id: this.state.id +1
         });
       })
-      .catch( err => console .log(err));
+      .catch( err => console.log(err));
       
 }
 
